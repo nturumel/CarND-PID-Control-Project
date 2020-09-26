@@ -35,9 +35,9 @@ class PID {
   /**
    * PID Errors
    */
-  double p_error;
-  double i_error;
-  double d_error;
+  double p_error = 0;
+  double i_error = 0;
+  double d_error = 0;
 
   /**
    * PID Coefficients
@@ -45,6 +45,9 @@ class PID {
   double Kp;
   double Ki;
   double Kd;
+  double prev_CTE;
+  double sum = 0;
+
 };
 
 #endif  // PID_H
