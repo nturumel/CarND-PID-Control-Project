@@ -37,11 +37,11 @@ int main() {
    * TODO: Initialize the pid variable.
    */
   PID controllerAngle;
-  controllerAngle.Init(0.2, 0.0009, 3.0);
+  controllerAngle.Init(0.4, 0.003, 3.0);
   
   PID controllerSpeed;
-  controllerSpeed.Init(-0.12, 0, -1.2);
-  double desiredSpeed = 50.0;
+  controllerSpeed.Init(0.12, 0, 1.2);
+  double desiredSpeed = 35.0;
   
   bool optimiseAngle = false;
   bool optimiseSpeed = false;
@@ -122,7 +122,7 @@ int main() {
 
                           json msgJson;
                           msgJson["steering_angle"] = steer_value;
-                          msgJson["throttle"] = 0.3;
+                          msgJson["throttle"] = throttle;
                           auto msg = "42[\"steer\"," + msgJson.dump() + "]";
                           std::cout << msg << std::endl;
                           ws.send(msg.data(), msg.length(), uWS::OpCode::TEXT);
