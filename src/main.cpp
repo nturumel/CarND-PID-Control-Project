@@ -37,7 +37,7 @@ int main() {
    * TODO: Initialize the pid variable.
    */
   PID controllerAngle;
-  controllerAngle.Init(0.4, 0.003, 3.0);
+  controllerAngle.Init(0.5, 0.004, 3.0);
   
   PID controllerSpeed;
   controllerSpeed.Init(0.12, 0, 1.2);

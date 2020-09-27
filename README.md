@@ -46,53 +46,66 @@ using the following settings:
 * indent using spaces
 * set tab width to 2 spaces (keeps the matrices in source code aligned)
 
-## Code Style
+## PID Controller
 
-Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
+Taken from https://en.wikipedia.org/wiki/PID_controller
 
-## Project Instructions and Rubric
+PID stands for Proportional, Integral, Differential controller. It calculates an error value, the difference between  the current value of process variable and the desired value.
+$$
+ {\displaystyle u(t)=K_{\text{p}}e(t)+K_{\text{i}}\int _{0}^{t}e(t')\,dt'+K_{\text{d}}{\frac {de(t)}{dt}},}{\displaystyle u(t)=K_{\text{p}}e(t)+K_{\text{i}}\int _{0}^{t}e(t')\,dt'+K_{\text{d}}{\frac {de(t)}{dt}},}
+$$
+ where the K's are the constants for the different parts.
 
-Note: regardless of the changes you make, your project must be buildable using
-cmake and make!
+Let us look at the three components individually.
 
-More information is only accessible by people who are already enrolled in Term 2
-of CarND. If you are enrolled, see [the project page](https://classroom.udacity.com/nanodegrees/nd013/parts/40f38239-66b6-46ec-ae68-03afd8a601c8/modules/f1820894-8322-4bb3-81aa-b26b3c6dcbaf/lessons/e8235395-22dd-4b87-88e0-d108c5e5bbf4/concepts/6a4d8d42-6a04-4aa6-b284-1697c0fd6562)
-for instructions and the project rubric.
+1. #### Proportional: 
 
-## Hints!
+   As the name suggests, proportional control applies a correction directly proportional to the offest of the process variable from the desired variable. Higher values lead to faster convergence, however it also leads to higher oscillations. Basically think of a spring mass system with a high stiffness... Same behavior
 
-* You don't have to follow this directory structure, but if you do, your work
-  will span all of the .cpp files here. Keep an eye out for TODOs.
+   ![image-20200927142256390](images\P)
 
-## Call for IDE Profiles Pull Requests
+2. ### Integral:
 
-Help your fellow students!
+    Sometimes, there may be a constant error in the process intrinsic to the devices, this error is called steady state error. To counter this problem, we can introduce a correction, that is proportional to the total accumulation of error.  In a spring mass system, think that this corrections solves the problem of a spring that has a permanent stretch in it.
 
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to we ensure
-that students don't feel pressured to use one IDE or another.
+   ![image-20200927142840938](images\I)
 
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
+    
 
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
+3. ### Differential:
 
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
+   In a spring mass system, this would be the damping term, this dampens the oscillations and gets you to  a steady state.
 
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
+   The magnitude of correction is directly proportional to the slope of the error. 
 
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./
+   ![image-20200927143239757](images\D)
 
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
+## Controllers used
+
+There are two controllers used in this project, one for speed and one for angle.
+
+The speed controller tries to get the car to the desired speed and the angle controller steers the car.
+
+The error for the steer controller is obtained from the simulator.
+
+The error for the speed  controller is obtained by taking the difference between the current speed and the desired speed.
+
+By Manual Tuning, we obtained the following weights (P, I, D):
+
+Angle PID --> (0.4, 0.003, 3.0)
+
+Speed PID --> (0.12, 0, 1.1)
+
+We also limit the range of throttle and steer angle, the corrections, to values between -1 and 1
+
+## Results
+
+Car can make it through the track above the minimum required speed of 30 MPH.
+
+
+
+## Future Challenges
+
+1. Implement Twiddle to obtain most optimum values.
+2. Increase Speed
 
