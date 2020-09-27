@@ -40,7 +40,7 @@ int main() {
   controllerAngle.Init(0.3, 0.008, 3.5);
   
   PID controllerSpeed;
-  controllerSpeed.Init(0.15, 0, 1.2);
+  controllerSpeed.Init(0.15, 0.001, 1.2);
   double desiredSpeed = 35.0;
   
   bool optimiseAngle = false;
