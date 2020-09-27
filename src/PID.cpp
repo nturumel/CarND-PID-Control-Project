@@ -17,6 +17,17 @@ void PID::Init(double Kp_, double Ki_, double Kd_) {
 	kd = Kd_;
 }
 
+void PID::Init(const vector<double>& K_) {
+	/**
+	 * TODO: Initialize PID coefficients (and errors, if needed)
+	 */
+	assert(K_.size() == 3);
+
+	Kp = K_[0];
+	Ki = K_[1];
+	kd = K_[2];
+}
+
 void PID::UpdateError(double cte) {
   /**
    * TODO: Update PID errors based on cte.
