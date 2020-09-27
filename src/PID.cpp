@@ -14,18 +14,18 @@ void PID::Init(double Kp_, double Ki_, double Kd_) {
    */
 	Kp = Kp_;
 	Ki = Ki_;
-	kd = Kd_;
+	Kd = Kd_;
 }
 
 void PID::Init(const vector<double>& K_) {
-	/**
+	/**		
 	 * TODO: Initialize PID coefficients (and errors, if needed)
 	 */
 	assert(K_.size() == 3);
 
 	Kp = K_[0];
 	Ki = K_[1];
-	kd = K_[2];
+	Kd = K_[2];
 }
 
 void PID::UpdateError(double cte) {
@@ -37,7 +37,7 @@ void PID::UpdateError(double cte) {
 	prev_CTE = cte;
 	p_error = Kp * cte;
 	d_error = Kd * delta;
-	i_error = ki * sum;
+	i_error = Ki * sum;
 
 }
 

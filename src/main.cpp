@@ -4,7 +4,6 @@
 #include <string>
 #include "json.hpp"
 #include "PID.h"
-#include "Twiddle.h"
 
 // for convenience
 using nlohmann::json;
@@ -38,15 +37,16 @@ int main() {
    * TODO: Initialize the pid variable.
    */
   PID controllerAngle;
-  controllerAngle.Init(1, 1, 1);
+  controllerAngle.Init(0.2, 0.0009, 3.0);
   
   PID controllerSpeed;
-  controllerSpeed.Init(1, 1, 1);
+  controllerSpeed.Init(-0.12, 0, -1.2);
   double desiredSpeed = 50.0;
   
   bool optimiseAngle = false;
   bool optimiseSpeed = false;
 
+  /*
 
   if (optimiseAngle && !optimiseSpeed)
   {
@@ -59,10 +59,11 @@ int main() {
       Twiddle t;
       controllerSpeed.Init(t.optimiseSpeed());
   }
+  */
 
   if (!optimiseAngle && !optimiseSpeed)
   {
-      h.onMessage([&controllerAngle, controllerSpeed](uWS::WebSocket<uWS::SERVER> ws, char* data, size_t length,
+      h.onMessage([&desiredSpeed, &controllerAngle, &controllerSpeed](uWS::WebSocket<uWS::SERVER> ws, char* data, size_t length,
           uWS::OpCode opCode) {
               // "42" at the start of the message means there's a websocket message event.
               // The 4 signifies a websocket message
@@ -110,13 +111,13 @@ int main() {
                               throttle = 1;
                           }
 
-                          if (throttle < 0.45)
+                          if (throttle < -1)
                           {
-                              throttle = 0.45;
+                              throttle = -1;
                           }
 
                           // DEBUG
-                          std::cout << "CTE: " << cte << " Steering Value: " << steer_value << std::endl;
+                          std::cout << "angle:" << deg2rad(angle)<< " CTE: " << cte << " Steering Value: " << steer_value << std::endl;
                           std::cout << "Delta Speed: " << speed - desiredSpeed << " Throttle Value: " << throttle << std::endl;
 
                           json msgJson;

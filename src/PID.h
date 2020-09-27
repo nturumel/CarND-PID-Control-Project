@@ -1,6 +1,8 @@
 #ifndef PID_H
 #define PID_H
 #include <assert.h>
+#include <vector>
+using namespace std;
 
 class PID {
  public:
@@ -19,6 +21,7 @@ class PID {
    * @param (Kp_, Ki_, Kd_) The initial PID coefficients
    */
   void Init(double Kp_, double Ki_, double Kd_);
+  void Init(const vector<double>& K_);
 
   /**
    * Update the PID error variables given cross track error.
