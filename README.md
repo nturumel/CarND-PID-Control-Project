@@ -90,17 +90,25 @@ The error for the steer controller is obtained from the simulator.
 
 The error for the speed  controller is obtained by taking the difference between the current speed and the desired speed.
 
+The desired speed is:
+
+```c++
+double desiredSpeed = 40 - (10) * fabs(steer_value);
+```
+
 By Manual Tuning, we obtained the following weights (P, I, D):
 
-Angle PID --> (0.4, 0.003, 3.0)
+Angle PID -->(0.3, 0.008, 3.5)
 
-Speed PID --> (0.12, 0, 1.1)
+Speed PID --> (0.15, 0.0, 1.5)
 
 We also limit the range of throttle and steer angle, the corrections, to values between -1 and 1
 
 ## Results
 
-Car can make it through the track above the minimum required speed of 30 MPH.
+Car can make it through the track above the minimum required speed of 30 MPH (avg).
+
+![PID_gif](PID_gif.gif)
 
 
 

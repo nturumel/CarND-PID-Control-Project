@@ -103,8 +103,8 @@ int main() {
                               steer_value = -1;
                           }
 
-                          // put the desired speed between 25 -35, depending upon angle
-                          double desiredSpeed = 35 - (10) * fabs(steer_value);
+                          // put the desired speed between 30 - 40, depending upon angle
+                          double desiredSpeed = 40 - (10) * fabs(steer_value);
                           controllerSpeed.UpdateError(speed - desiredSpeed);
                           throttle = controllerSpeed.TotalError();
                           if (throttle > 1)
