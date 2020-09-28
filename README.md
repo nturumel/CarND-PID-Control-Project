@@ -62,13 +62,13 @@ Let us look at the three components individually.
 
    As the name suggests, proportional control applies a correction directly proportional to the offest of the process variable from the desired variable. Higher values lead to faster convergence, however it also leads to higher oscillations. Basically think of a spring mass system with a high stiffness... Same behavior
 
-   ![image-20200927142256390](images\P)
+   ![image-20200927142256390](images/P.PNG)
 
 2. ### Integral:
 
     Sometimes, there may be a constant error in the process intrinsic to the devices, this error is called steady state error. To counter this problem, we can introduce a correction, that is proportional to the total accumulation of error.  In a spring mass system, think that this corrections solves the problem of a spring that has a permanent stretch in it.
 
-   ![image-20200927142840938](images\I)
+   ![image-20200927142840938](images/I.PNG)
 
     
 
@@ -78,7 +78,7 @@ Let us look at the three components individually.
 
    The magnitude of correction is directly proportional to the slope of the error. 
 
-   ![image-20200927143239757](images\D)
+   ![image-20200927143239757](images/D.PNG)
 
 ## Controllers used
 
