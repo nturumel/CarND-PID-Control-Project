@@ -66,7 +66,7 @@ Let us look at the three components individually.
 
 2. ### Integral:
 
-    Sometimes, there may be a constant error in the process intrinsic to the devices, this error is called steady state error. To counter this problem, we can introduce a correction, that is proportional to the total accumulation of error.  In a spring mass system, think that this corrections solves the problem of a spring that has a permanent stretch in it.
+    Sometimes, there may be a constant error in the process intrinsic to the devices, this error is called steady state error. To counter this problem, we can introduce a correction, that is proportional to the total accumulation of error.  In a spring mass system, think that this correction solves the problem of a spring that has a permanent stretch in it.
 
    ![image-20200927142840938](images/I.png)
 
@@ -100,7 +100,7 @@ double desiredSpeed = 40 - (10) * fabs(steer_value);
 
 Initially, I fixed the throttle at 0.3  and started with K values for steering controller is [0.2, 0.0003, 3.0]. 
 
-I noticed that the greater proportional value, the greater the swing. The differential term basically dampens the swing. The integral term is probably least influential, as there is not much steady state error.
+I noticed that greater the proportional value, the greater the swing. The differential term basically dampens the swing. The integral term is probably least influential, as there is not much steady state error.
 
 I initially started with K values for speed controller is   [0.12, 0, 1.2] and fixed the desired speed of 40. This was a problem as the speed needs to reflect the sharpness of the turn.
 
@@ -130,4 +130,3 @@ Car can make it through the track above the minimum required speed of 30 MPH (av
 
 1. Implement Twiddle to obtain most optimum values.
 2. Increase Speed
-
