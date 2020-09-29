@@ -96,7 +96,21 @@ The desired speed is:
 double desiredSpeed = 40 - (10) * fabs(steer_value);
 ```
 
-By Manual Tuning, we obtained the following weights (P, I, D):
+## Manual Tuning
+
+Initially, I fixed the throttle at 0.3  and started with K values for steering controller is [0.2, 0.0003, 3.0]. 
+
+I noticed that the greater proportional value, the greater the swing. The differential term basically dampens the swing. The integral term is probably least influential, as there is not much steady state error.
+
+I initially started with K values for speed controller is   [0.12, 0, 1.2] and fixed the desired speed of 40. This was a problem as the speed needs to reflect the sharpness of the turn.
+
+Then the speed reflected the sharpness.
+
+The proportional term impacts how fast or soft the car slows down.
+
+The differential term is not useful as the desired speed changes really rapidly, so we need rapid oscillations of the speed. The integral term maintains the average speed to a greater value.
+
+We  end with obtained the following weights (P, I, D):
 
 Angle PID -->(0.3, 0.008, 3.5)
 
