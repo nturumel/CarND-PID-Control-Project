@@ -130,4 +130,3 @@ Car can make it through the track above the minimum required speed of 30 MPH (av
 
 1. Implement Twiddle to obtain most optimum values.
 2. Increase Speed
-
